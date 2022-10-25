@@ -22,15 +22,12 @@ print(z)
 
 # 2.Iterate Through a List of Dictionaries
 def iterateDictionary(some_list):
-    output_list = []
     for some_dict in some_list:
         entry = ""
         for key,value in some_dict.items():
-            entry += key + ' - ' + value + ', '
+            entry += f"{key} - {value}, "
         entry = entry[:-2]
-        output_list.append(entry)
-    for element in output_list:
-        print(element)
+        print(entry)
 
 students = [
         {'first_name':  'Michael', 'last_name' : 'Jordan'},
@@ -83,7 +80,7 @@ Chicago
 Tulsa
 DC
 Burbank
-    
+
 8 INSTRUCTORS
 Michael
 Amy
