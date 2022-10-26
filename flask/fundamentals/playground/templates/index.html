@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playground</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito">
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    body {
+        background-color: white;
+        font-family: "Nunito", sans-serif;
+    }
+    h1 {
+        text-align: center;
+        margin: 50px 0px;
+    }
+    .container {
+        margin: 0 auto;
+        width: 970px;
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+    }
+    .box {
+        background-color: {{box_color}};
+        width: 200px;
+        height: 200px;
+        border: 3px solid black;
+        border-radius: 20px;
+        margin: 15px 10px;
+    }
+</style>
+<body>
+    <h1>Welcome!</h1>
+    <div class="container">
+        {% for x in range(times): %}
+            <div class="box"></div>
+        {% endfor %}
+    </div>
+</body>
+</html>

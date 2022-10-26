@@ -1,0 +1,28 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.container {
+    background-color: white;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.title {
+    text-align: center;
+    width: 550px;
+    margin: 30px;
+    font-size: 55px;
+    font-weight: bold;
+}
+.board-row {
+    height: 100px;
+    width: inherit;
+    display: flex;
+    justify-content: center;
+}
+.box {
+    height: inherit;
+    width: 100px;
+}

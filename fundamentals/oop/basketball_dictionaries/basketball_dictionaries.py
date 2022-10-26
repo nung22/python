@@ -1,4 +1,5 @@
-# Challenge 1: Update the Constructor
+
+# TODO Challenge 1: Update the Constructor
 class Player:
     def __init__(self, playerInfo):
         self.name = playerInfo['name']
@@ -6,17 +7,16 @@ class Player:
         self.position = playerInfo['position']
         self.team = playerInfo['team']
 
-    # NINJA BONUS: Add a get_team(cls, team_list) @classmethod
+    # TODO NINJA BONUS: Add a get_team(cls, team_list) @classmethod
     @classmethod
     def get_team(cls, team_list):
         new_team = []
         for person in team_list:
-            new_team.append(Player(person))
+            new_team.append(cls(person))
         return new_team
 
 
-
-# Challenge 2. Create instances using individual player dictionaries
+# TODO Challenge 2. Create instances using individual player dictionaries
 kevin = {
         "name": "Kevin Durant", 
         "age":34, 
@@ -40,8 +40,11 @@ player_kevin = Player(kevin)
 player_jason = Player(jason)
 player_kyrie = Player(kyrie)
 
+# !Test
+# print(f"{player_jason}\n{player_kevin}\n{player_kyrie}")
 
-# Challenge 3. Make a list of Player instances from a list of dictionaries
+
+# TODO Challenge 3. Make a list of Player instances from a list of dictionaries
 players = [
     {
         "name": "Kevin Durant", 
@@ -86,17 +89,16 @@ new_team = []
 for person in players:
     new_team.append(Player(person))
 
-# TEST
+# !TEST
 # for player in new_team:
-#     print(player.name)
+#     print(f"{player.name} - Age:{player.age} - {player.position.capitalize()} - {player.team.upper()}")
 
 
-# NINJA BONUS: Add a get_team(cls, team_list) @classmethod
+# TODO NINJA BONUS: Add a get_team(cls, team_list) @classmethod
 
-# TEST
-#  team_list = Player.get_team(players)
-# for player in team_list:
-#     print(player.name)
+teamList = Player.get_team(players)
+print(teamList[0])
 
-
-
+# !TEST
+# for player in teamList:
+#     print(f"{player.name} - Age:{player.age} - {player.position.capitalize()}")
