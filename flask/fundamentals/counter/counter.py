@@ -21,7 +21,6 @@ def adjust_increment():
   print(increment)
   return redirect('/')
 
-
 @app.route('/destroy_session')
 def destroy_session():
   session.pop('visits')
