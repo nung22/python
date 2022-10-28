@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css'
+    integrity='sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi'
+    rel='stylesheet' crossorigin='anonymous'>
+  <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/style.css') }}">
+  <title>Dojo Survey</title>
+</head>
+<body>
+  <div class="container bg-secondary">
+    <form action="/collect" method="post">
+      <h1 class="text-warning text-center">Dojo Survey</h1>
+        <div class="form-group row">
+          <label class="text-light" for="name">Name:</label>
+          <input type="text" name="name" required>
+        </div>
+        <div class="form-group row">
+          <label class="text-light" for="location">Dojo Location:</label>
+          <!-- <select name="location" required>
+            <option value="" disabled selected>-- Select a Location --</option>
+            <option value="Bellevue">Bellevue</option>
+            <option value="Burbank">Burbank</option>
+            <option value="Chicago">Chicago</option>
+            <option value="San Jose">San Jose</option>
+            <option value="Online">Online</option>
+          </select> -->
+          <div class="form-check form-check-inline">
+            <label class="form-check-label text-light">
+              <input class="form-check-input" type="radio" name="location" value="Bellevue" id="bellevue">Bellevue
+            </label>
+          </div> 
+          <div class="form-check form-check-inline">
+            <label class="form-check-label text-light">
+              <input class="form-check-input" type="radio" name="location" value="Burbank" id="burbank">Burbank
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <label class="form-check-label text-light">
+              <input class="form-check-input" type="radio" name="location" value="Chicago" id="chicago">Chicago
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <label class="form-check-label text-light">
+              <input class="form-check-input" type="radio" name="location" value="San Jose" id="san_jose">San Jose
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <label class="form-check-label text-light">
+              <input class="form-check-input" type="radio" name="location" value="Online" id="online">Online
+            </label>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="text-light" for="language">Favorite Language:</label>
+          <select name="language" required>
+            <option value="" disabled selected>-- Select a Language --</option>
+            <option value="HTML">HTML</option>
+            <option value="CSS">CSS</option>
+            <option value="Javascript">Javascript</option>
+            <option value="Python">Python</option>
+            <option value="C#">C#</option>
+          </select>
+        </div>
+        <div class="form-group row">
+          <label class="text-light" for="comments">Comments (optional):</label>
+          <textarea class="form-control" name="comments" id="" rows="3"></textarea>
+        </div>
+        <input class="form-control bg-warning custom-btn" type="submit" value="Submit">
+    </form>
+  </div>
+</body>
+</html>
