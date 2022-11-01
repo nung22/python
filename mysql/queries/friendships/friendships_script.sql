@@ -35,11 +35,28 @@ JOIN friendships ON friendships.user_id = users.id
 LEFT JOIN users as user2 ON user2.id = friendships.friend_id;
 
 -- NINJA Query: Return all users who are friends with the first user, make sure their names are displayed in results.
+SELECT user2.first_name as friend_first_name, user2.last_name as friend_last_name 
+FROM users
+JOIN friendships ON friendships.user_id = users.id
+LEFT JOIN users as user2 ON user2.id = friendships.friend_id
+WHERE users.id = 1;
 
 -- NINJA Query: Return the count of all friendships
+SELECT COUNT(*) as count_of_all_friendships FROM friendships;
 
 -- NINJA Query: Find out who has the most friends and return the count of their friends.
+SELECT users.first_name, users.last_name, COUNT(*) as count_of_friends 
+FROM users
+JOIN friendships ON friendships.user_id = users.id
+LEFT JOIN users as user2 ON user2.id = friendships.friend_id
+WHERE users.id = 1;
 
 -- NINJA Query: Return the friends of the third user in alphabetical order
+SELECT user2.first_name as friend_first_name, user2.last_name as friend_last_name 
+FROM users
+JOIN friendships ON friendships.user_id = users.id
+LEFT JOIN users as user2 ON user2.id = friendships.friend_id
+WHERE users.id = 3
+ORDER BY friend_first_name;
 
 SELECT * FROM users;
