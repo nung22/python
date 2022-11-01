@@ -3,29 +3,58 @@ from flask import Flask, render_template, request, redirect
 from user import User
 app = Flask(__name__)
 
+@app.route('/')
+def index():
+  return redirect('/users')
+
+
 @app.route('/users')
 def read_all():
   users = User.get_all()
   print(users)
   return render_template("read(all).html", all_users = users)
 
+
 @app.route('/make_new_user')
 def make_new_user():
   return render_template('create.html')
 
+
+@app.route('/users/<id>')
+def read_one(id):
+  user_id = { 'id' : id }
+  info = User.get_one(user_id)[0]
+  print(info)
+  return render_template('read(one).html', user_info = info)
+
+
+@app.route('/users/<id>/edit')
+def edit(id):
+  user_id = { 'id' : id }
+  info = User.get_one(user_id)[0]
+  print(info)
+  return render_template('edit.html', user_info = info)
+
+
+@app.route('/users/<id>/update', methods=['POST'])
+def update(id):
+  print(request.form)
+  User.edit(request.form)
+  return redirect('/users')
+
+@app.route('/users/<id>/destroy')
+def destroy(id):
+  data = { 'id' : id }
+  User.delete(data)
+  return redirect('/users')
+
+
 @app.route('/users/new', methods=['POST'])
 def create():
-    # First we make a data dictionary from our request.form coming from our template.
-    # The keys in data need to line up exactly with the variables in our query string.
-    data = {
-        "fname": request.form["fname"],
-        "lname": request.form["lname"],
-        "email": request.form["email"]
-    }
-        # We pass the data dictionary into the save method from the Friend class.
-    User.save(data)
-    # Don't forget to redirect after saving to the database.
-    return redirect('/users')
+  print(request.form)
+  User.save(request.form)
+  return redirect('/users')
+
 
 if __name__=='__main__':
   app.run(debug=True)

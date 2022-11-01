@@ -12,8 +12,8 @@
 </head>
 <body>
     <div class="container">
-      <h1 class="text-center">Add a New User</h1>
-      <div class="user-form">
+      <div class="user-form col-md-8 offset-md-2">
+        <h1 class="text-center">Add a New User</h1>
         <form action="/users/new" method="POST">
           <div class="form-group row">
             <label for="fname">First Name:</label>
@@ -27,7 +27,7 @@
             <label for="email" >Email:</label>
             <input type="text" name="email">
           </div>
-          <input class="form-control bg-success text-light" type="submit" value="Add Friend">
+          <input class="form-control bg-success text-light custom-btn" type="submit" value="Add Friend">
           <a class="row" href="/users">Home</a>
         </form>
       </div>

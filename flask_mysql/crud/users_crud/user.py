@@ -9,6 +9,7 @@ class User:
         self.email = data['email']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
+        
     # Now we use class methods to query our database
     @classmethod
     def get_all(cls):
@@ -21,8 +22,24 @@ class User:
         for user in results:
             users.append( cls(user) )
         return users
+    
+    @classmethod
+    def get_one(cls, data):
+        query = "SELECT * FROM users WHERE id = %(id)s;"
+        return connectToMySQL('users').query_db( query, data )
+    
     @classmethod
     def save(cls, data):
-        query = "INSERT INTO users ( first_name , last_name , email , created_at, updated_at ) VALUES ( %(fname)s , %(lname)s , %(email)s , NOW() , NOW() );"
+        query = "INSERT INTO users ( first_name , last_name , email ) VALUES ( %(fname)s , %(lname)s , %(email)s );"
         # data is a dictionary that will be passed into the save method from server.py
         return connectToMySQL('users').query_db( query, data )
+    
+    @classmethod
+    def edit(cls, data):
+        query = "UPDATE users SET first_name =  %(fname)s, last_name = %(lname)s, email = %(email)s, updated_at = NOW() WHERE users.id = %(id)s;"
+        return connectToMySQL('users').query_db( query, data )   
+    
+    @classmethod
+    def delete(cls, data):
+        query = "DELETE FROM users WHERE users.id = %(id)s;"
+        return connectToMySQL('users').query_db( query, data ) 
