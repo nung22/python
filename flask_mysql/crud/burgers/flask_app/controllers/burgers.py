@@ -1,5 +1,5 @@
 from flask_app import app
-from flask import render_template,redirect,request,session,flash
+from flask import render_template,redirect,request,session,Flask
 from flask_app.models.burger import Burger
 
 
@@ -9,9 +9,7 @@ def burgers():
 	return render_templates('results.html',burgers=Burger.get_all())
 
 
-# burgers.py...
-from flask_app.models.burger import Burger
-# gets all the burgers and returns them in a list of burger objects .
+# create new Burger object given data from a form.
 @app.route('/create/burger',methods=['POST'])
 def create_burger():
 	data = {

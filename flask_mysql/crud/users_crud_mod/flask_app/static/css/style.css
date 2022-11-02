@@ -1,0 +1,48 @@
+* { 
+  padding: 0;
+  margin: 0;
+}
+.container {
+  margin: 0 auto;
+  width: 970px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+h1 {
+  margin-top: 30px;
+  font-size: 30px;
+}
+input {
+  padding: 3px 0px;
+}
+
+/* New User Form */
+.user-form {
+  width: 300px;
+  margin-top: -20px;
+}
+
+/* Table for viewing all users */
+tr {
+  vertical-align: middle;
+}
+.id,.actions {
+  text-align: center;
+}
+.row {
+  margin: 20px;
+}
+label {
+  margin-left: -10px;
+}
+.custom-btn {
+  width: 110px;
+  margin-left: 20px;
+}
+
+/* Card for viewing a single user */
+.single-user-card {
+  border: 3px solid black;
+  width: 400px;
+}
