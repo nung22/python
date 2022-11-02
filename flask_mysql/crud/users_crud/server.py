@@ -53,7 +53,9 @@ def destroy(id):
 def create():
   print(request.form)
   User.save(request.form)
-  return redirect('/users')
+  users = User.get_all()
+  last_id = users[len(users)-1].id
+  return redirect('/users/'+str(last_id))
 
 
 if __name__=='__main__':
