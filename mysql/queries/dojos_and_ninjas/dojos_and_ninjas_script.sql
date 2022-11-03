@@ -27,3 +27,5 @@ WHERE dojo_id = 6;
 SELECT dojos.name FROM ninjas
 JOIN dojos ON dojos.id = ninjas.dojo_id
 WHERE ninjas.id = 9;
+
+SELECT * FROM dojos LEFT JOIN ninjas ON ninjas.dojo_id = dojos.id WHERE ninjas.dojo_id = 9;
