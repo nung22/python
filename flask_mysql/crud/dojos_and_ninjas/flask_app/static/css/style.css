@@ -1,0 +1,31 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+.dojo-display {
+  width: 700px;
+  display: flex;
+  justify-content: center;
+}
+
+.new-ninja-form {
+  width: 350px;
+}
+
+label {
+  margin-right: -10px;
+}
+
+.dojo-dropdown{
+  width: 193px;
+  margin-left: -30px;
+}
+
+input {
+  margin-left: -30px;
+}
+
+.show-dojo-table{
+  width: 500px;
+}
