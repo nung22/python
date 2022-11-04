@@ -1,0 +1,42 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.container {
+  width: 400px;
+  padding: 30px 50px;
+  margin-top: 50px;
+}
+
+.row {
+  margin-top: 20px;
+}
+
+label {
+  margin-bottom: 7px;
+  margin-left: -10px;
+  font-weight: 600;
+}
+
+.form-check-label {
+  font-weight: normal;
+  margin-left: 7px;
+}
+
+.custom-btn {
+  margin-top: 20px;
+  width: 100px;
+  border-color: #6c757d;
+  margin-left: 100px;
+  text-decoration: none;
+}
+
+.results_title{
+  margin-bottom: 20px;
+  text-decoration: underline;
+}
+
+.label{
+  font-weight: 600;
+}
