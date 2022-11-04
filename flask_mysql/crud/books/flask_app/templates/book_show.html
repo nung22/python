@@ -14,13 +14,13 @@
   <div class="container p-5">
     <div class="row book-show-display">
       <div class="col">
-        <h1 class="mb-4">Title: {{ book_name }}</h1>
+        <h1 class="mb-4">Title: {{ book.name }}</h1>
         <table class="table table-borderless mb-3">
           <thead>
             <th>Favorited by:</th>
           </thead>
           <tbody>
-            {% for one_favorite in book_favorites %}
+            {% for one_favorite in book %}
             <tr>
               <td scope="row">
                 {{ one_favorite.name }}
@@ -33,13 +33,14 @@
       </div>
       <div class="col mx-5">
         <h1 class="mb-4">Add Book's Favorite</h1>
-        <form action="/create_book_favorite" method="post">
+        <form action="/make_book_favorite" method="post">
+          <input type="hidden" name="book_id" value="{{ book.id }}">
           <div class="form-group row">
-            <label class="col-sm-4 col-form-label" for="title">Author:</label>
+            <label class="col-sm-4 col-form-label" for="name">Author:</label>
             <div class="col-sm-2">
-              <select name="title" required>
+              <select name="author_id" id="name" required>
                 <option value="" disabled selected>-- Pick an Author --</option>
-                {% for one_author in all_authors %}
+                {% for one_author in not_favorited_by %}
                 <option value="{{ one_author.id }}">{{ one_author.name }}</option>
                 {% endfor %}
               </select>

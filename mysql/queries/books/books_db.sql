@@ -15,12 +15,11 @@ CREATE SCHEMA IF NOT EXISTS `books` DEFAULT CHARACTER SET utf8 ;
 USE `books` ;
 
 -- -----------------------------------------------------
--- Table `books`.`users`
+-- Table `books`.`authors`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `books`.`users` (
+CREATE TABLE IF NOT EXISTS `books`.`authors` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `first_name` VARCHAR(255) NULL,
-  `last_name` VARCHAR(255) NULL,
+  `name` VARCHAR(255) NULL,
   `created_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`))
@@ -52,7 +51,7 @@ CREATE TABLE IF NOT EXISTS `books`.`favorites` (
   INDEX `fk_favorites_books1_idx` (`book_id` ASC) VISIBLE,
   CONSTRAINT `fk_favorites_users`
     FOREIGN KEY (`user_id`)
-    REFERENCES `books`.`users` (`id`)
+    REFERENCES `books`.`authors` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_favorites_books1`

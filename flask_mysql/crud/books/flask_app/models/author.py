@@ -32,6 +32,8 @@ class Author:
         results = connectToMySQL(DATABASE).query_db(query, data)
         author = cls( results[0] )
         for db_row in results:
+            if db_row['books.id'] == None:
+                break
             book_data = {
                     "id" : db_row["books.id"],
                     "title" : db_row["title"],
