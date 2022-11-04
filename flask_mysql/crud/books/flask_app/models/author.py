@@ -14,11 +14,8 @@ class Author:
     @classmethod
     def get_all(cls):
         query = "SELECT * FROM authors;"
-        # make sure to call the connectToMySQL function with the schema you are targeting.
         results = connectToMySQL(DATABASE).query_db(query)
-        # Create an empty list to append our instances of authors
         authors = []
-        # Iterate over the db results and create instances of authors with cls.
         for author in results:
             authors.append( cls(author) )
         return authors
@@ -30,13 +27,11 @@ class Author:
     
     # This method will retrieve the specific author with all the books they have favorited.
     @classmethod
-    def get_books_favorited_by_author(cls , data):
+    def get_author_by_id(cls , data):
         query = "SELECT * FROM authors LEFT JOIN favorites ON favorites.author_id = authors.id LEFT JOIN books ON favorites.book_id = books.id WHERE authors.id = %(id)s;"
         results = connectToMySQL(DATABASE).query_db(query, data)
-        # results will be a list of book data with the author attached to each row. 
         author = cls( results[0] )
         for db_row in results:
-            # Now we parse the book data to make instances of books and add them into our list.
             book_data = {
                     "id" : db_row["books.id"],
                     "title" : db_row["title"],
@@ -46,3 +41,19 @@ class Author:
             }
             author.favorite_books.append( book.Book( book_data ) )
         return author
+    
+    # This method adds a new favorite book for an author
+    @classmethod
+    def make_favorite(cls, data):
+        query = "INSERT INTO favorites (author_id, book_id) VALUES (%(author_id)s, %(book_id)s);"
+        return connectToMySQL(DATABASE).query_db(query, data)
+    
+    # This method will return all authors who have not favorited a given book
+    @classmethod
+    def have_not_favorited(cls, data):
+        query = "SELECT * FROM authors WHERE authors.id NOT IN ( SELECT author_id FROM favorites WHERE book_id = %(id)s );"
+        results = connectToMySQL(DATABASE).query_db(query, data)
+        authors = []
+        for db_row in results:
+            authors.append(cls(db_row))
+        return authors
