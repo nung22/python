@@ -3,7 +3,7 @@ from flask_app.models import book
 from pprint import pprint
 DATABASE = "books"
 
-class Book:
+class Author:
     def __init__(self, db_data):
         self.id = db_data['id']
         self.name = db_data['name']
@@ -11,6 +11,18 @@ class Book:
         self.created_at = db_data['created_at']
         self.updated_at = db_data['updated_at']
     
+    @classmethod
+    def get_all(cls):
+        query = "SELECT * FROM authors;"
+        # make sure to call the connectToMySQL function with the schema you are targeting.
+        results = connectToMySQL(DATABASE).query_db(query)
+        # Create an empty list to append our instances of authors
+        authors = []
+        # Iterate over the db results and create instances of authors with cls.
+        for author in results:
+            authors.append( cls(author) )
+        return authors
+
     @classmethod
     def save(cls, data):
         query = "INSERT INTO authors ( name, created_at, updated_at ) VALUES (%(name)s,NOW(),NOW());"
@@ -25,12 +37,12 @@ class Book:
         author = cls( results[0] )
         for db_row in results:
             # Now we parse the book data to make instances of books and add them into our list.
-          book_data = {
-                  "id" : db_row["books.id"],
-                  "title" : db_row["title"],
-                  "num_of_pages" : db_row["num_of_pages"],
-                  "created_at" : db_row["books.created_at"],
-                  "updated_at" : db_row["books.updated_at"]
-          }
-          author.favorite_books.append( book.Book( book_data ) )
+            book_data = {
+                    "id" : db_row["books.id"],
+                    "title" : db_row["title"],
+                    "num_of_pages" : db_row["num_of_pages"],
+                    "created_at" : db_row["books.created_at"],
+                    "updated_at" : db_row["books.updated_at"]
+            }
+            author.favorite_books.append( book.Book( book_data ) )
         return author
