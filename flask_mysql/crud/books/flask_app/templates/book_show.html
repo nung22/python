@@ -14,13 +14,13 @@
   <div class="container p-5">
     <div class="row book-show-display">
       <div class="col">
-        <h1 class="mb-4">Title: {{ book.name }}</h1>
+        <h1 class="mb-4">Title: {{ book.title }}</h1>
         <table class="table table-borderless mb-3">
           <thead>
             <th>Favorited by:</th>
           </thead>
           <tbody>
-            {% for one_favorite in book %}
+            {% for one_favorite in book.favorited_by_author %}
             <tr>
               <td scope="row">
                 {{ one_favorite.name }}

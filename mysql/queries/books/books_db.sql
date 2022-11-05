@@ -7,6 +7,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema books
 -- -----------------------------------------------------
+DROP SCHEMA IF EXISTS `books` ;
 
 -- -----------------------------------------------------
 -- Schema books
@@ -44,13 +45,13 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `books`.`favorites` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `user_id` INT NOT NULL,
+  `author_id` INT NOT NULL,
   `book_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_favorites_users_idx` (`user_id` ASC) VISIBLE,
+  INDEX `fk_favorites_users_idx` (`author_id` ASC) VISIBLE,
   INDEX `fk_favorites_books1_idx` (`book_id` ASC) VISIBLE,
   CONSTRAINT `fk_favorites_users`
-    FOREIGN KEY (`user_id`)
+    FOREIGN KEY (`author_id`)
     REFERENCES `books`.`authors` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,

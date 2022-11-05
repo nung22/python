@@ -21,7 +21,7 @@
             <th># of Pages</th>
           </thead>
           <tbody>
-            {% for one_favorite in author %}
+            {% for one_favorite in author.favorite_books %}
             <tr>
               <td scope="row">
                 {{ one_favorite.title }}
