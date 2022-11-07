@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration and Login</title>
+    <title>Recipe Share</title>
     <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css'
         integrity='sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi'
         rel='stylesheet' crossorigin='anonymous'>
@@ -12,9 +12,10 @@
 </head>
 <body>
     <div class="container p-3">
+        <h1 class="bg-secondary text-info p-2 rounded">Recipe Share</h1>
         <div class="row">
             <div class="form-container rounded col p-5">
-                <h1 class="text-primary">Register</h1>
+                <h2 class="text-primary">Register</h2>
                 {% with messages = get_flashed_messages() %}
                     {% if messages %}
                         {% for message in messages %}
@@ -37,18 +38,18 @@
                     </div>
                     <div class="form-group row">
                         <label for="pass">Password:</label>
-                        <input class="form-control" type="text" name="password" id="pass">
+                        <input class="form-control" type="password" name="password" id="pass">
                     </div>
                     <div class="form-group row">
                         <label for="cpass">Confirm Password:</label>
-                        <input class="form-control" type="text" name="confirm_password" id="cpass">
+                        <input class="form-control" type="password" name="confirm_password" id="cpass">
                     </div>
                     <input class="form-control bg-primary text-light btn" type="submit" value="Register">
                 </form>
             </div>
             <div class="col"></div>
             <div class="form-container rounded col p-5">
-                <h1 class="text-success">Login</h1>
+                <h2 class="text-success">Login</h2>
                 {% with messages = get_flashed_messages() %}
                     {% if messages %}
                         {% for message in messages %}
@@ -63,7 +64,7 @@
                     </div>
                     <div class="form-group row">
                         <label for="password">Password:</label>
-                        <input class="form-control" type="text" name="password" id="password">
+                        <input class="form-control" type="password" name="password" id="password">
                     </div>
                     <input class="form-control bg-success text-light btn" type="submit" value="Login">
                 </form>

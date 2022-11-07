@@ -6,7 +6,7 @@ from flask_app.models.user import User
 def index():
     return render_template('index.html')
 
-# Create New user Object And Redirect To users Page
+# Create new user object
 @app.route('/register',methods=['POST'])
 def register():
     print(request.form)
@@ -28,6 +28,7 @@ def register():
     
     return redirect('/')
 
+# Log user in and take them to recipe dashboard
 @app.route('/login', methods=['POST'])
 def login():
     print(request.form)
@@ -42,8 +43,12 @@ def login():
     session['user_id'] = user.id
     session['first_name'] = user.first_name
     session['last_name'] = user.last_name
-    return redirect('/welcome')
+    print(session)
+    return redirect('/recipes')
 
-@app.route('/welcome')
-def welcome():
-    return render_template('welcome.html',user_name = session['first_name'])
+@app.route('/logout')
+def logout():
+    print(session)
+    session.clear()
+    print(session)
+    return redirect('/')
