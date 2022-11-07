@@ -8,18 +8,17 @@
         integrity='sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi'
         rel='stylesheet' crossorigin='anonymous'>
     <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Varela+Round'>
     <title>Recipe Share</title>
 </head>
 <body>
-    <div class="container p-3">
-        <h1>Welcome, {{ user_name }}</h1>
-        <div class="row mb-4">
-            <h4 class="col-10">All posted recipes:</h4>
-            <a class="col-1 text-end fs-5" href="/recipes/new">+Create</a>
-            <a class="col-1 text-end fs-5" href="/logout">Logout</a>
-        </div>
-        <table class="table table-hover table-bordered">
-            <thead class="bg-secondary text-light text-center fs-5">
+    <div class="container p-3 grid-container-recipes">
+        <h1 class="dashboard-greeting">Welcome, {{ user_name }}</h1>
+        <h5 class="dashboard-name">All posted recipes:</h5>
+        <a class="create-link text-end fs-6" href="/recipes/new">+ Create</a>
+        <a class="logout-link text-end fs-6" href="/logout">Logout</a>
+        <table class="table table-hover table-bordered dashboard">
+            <thead class="bg-secondary text-light text-center fs-6">
                 <tr>
                 <th>Name</th>
                 <th>Under</th>
@@ -27,18 +26,18 @@
                 <th>Actions</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="text-center fs-6">
                 {% for recipe in all_recipes %}
-                <tr>
+                <tr class="align-middle">
                     <td class="id" scope="row">{{ recipe.name }}</td>
                     <td>{{ recipe.under_30_min }}</td>
                     <td>{{ recipe.first_name }}</td>
                     <td class="actions">
-                        <p>
-                            <a href="/users/{{ recipe.id }}">View Recipe</a> 
+                        <p class="recipe-links">
+                            <a href="/recipes/{{ recipe.id }}">View Recipe</a> 
                             {% if recipe.user_id == user_id %}
-                            | <a href="/users/{{ recipe.id }}/edit">Edit</a> | 
-                            <a href="/users/{{ recipe.id }}/destroy">Delete</a>
+                            | <a href="/recipes/{{ recipe.id }}/edit">Edit</a> | 
+                            <a href="/recipes/{{ recipe.id }}/destroy">Delete</a>
                             {% endif %}
                         </p>
                     </td>
@@ -46,7 +45,6 @@
                 {% endfor %}
             </tbody>
         </table>
-        <!-- <a href="/" class="form-control bg-info text-light btn ms-5">Logout</a> -->
     </div>
 </body>
 </html>

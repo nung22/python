@@ -8,40 +8,38 @@
         integrity='sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi'
         rel='stylesheet' crossorigin='anonymous'>
     <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Varela+Round'>
     <title>Recipe Share</title>
 </head>
 <body>
-    <div class="container p-3">
-        <h1>Welcome {{ user.name }}</h1>
-        <table class="table table-hover table-bordered">
-            <thead class="bg-secondary text-light">
-                <tr>
-                <th>Name</th>
-                <th>Under</th>
-                <th>Posted By</th>
-                <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for recipe in all_users %}
-                <tr>
-                    <td class="id" scope="row">{{ recipe.name }}</td>
-                    <td>{{ recipe.under_30 }}</td>
-                    <td>{{ recipe.user_id }}</td>
-                    <td class="actions">
-                        <p>
-                            <a href="/users/{{ recipe.id }}">View Recipe</a> 
-                            {% if recipe.user_id == user.id %}
-                            | <a href="/users/{{ recipe.id }}/edit">Edit</a> | 
-                            <a href="/users/{{ recipe.id }}/destroy">Delete</a>
-                            {% endif %}
-                        </p>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        <a href="/make_new_user">Add a New User</a>
+    <div class="container p-3 grid-container-show-recipe">
+        <h1 class="card-greeting">Welcome, {{ user_name }}</h1>
+        <a class="return-card-link text-end fs-5" href="/recipes">Back to Recipes</a>
+        <a class="logout-card-link text-end fs-5" href="/logout">Logout</a>
+        <h2 class="card-name">{{ recipe.name }}</h2>
+        <h5 class="card-author text-start">Posted by: {{ recipe.first_name }}</h5>
+        <div class="recipe-card form-container rounded">
+            <table class="table table-borderless">
+                <tbody>
+                    <tr>
+                        <th scope="row">Description:</th>
+                        <td>{{ recipe.description }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Under 30 Minutes?</th>
+                        <td>{{ recipe.under_30_min }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Instructions:</th>
+                        <td>{{ recipe.instructions }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Date Made:</th>
+                        <td>{{ recipe.date_made }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </body>
 </html>

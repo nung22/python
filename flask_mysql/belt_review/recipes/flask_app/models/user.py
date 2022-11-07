@@ -19,7 +19,7 @@ class User:
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
     
-    # This method will return all instances of user objects
+    # This method will validate form data for user objects
     @staticmethod
     def validate_user(user:dict) -> bool:
         is_valid = True
@@ -46,6 +46,7 @@ class User:
         query = "INSERT INTO users (first_name, last_name, email, password) VALUES (%(first_name)s, %(last_name)s, %(email)s, %(password)s);"
         return connectToMySQL(DATABASE).query_db(query, data)
     
+    # This method will retrieve a user object given its email
     @classmethod
     def get_by_email(cls, data):
         query = "SELECT * FROM users WHERE email = %(email)s;"

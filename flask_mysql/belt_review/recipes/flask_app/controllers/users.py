@@ -20,15 +20,13 @@ def register():
         'email' : request.form['email'],
         'password' : hashed_pass
     }
-    
     user_id = User.save(data)
     session['user_id'] = user_id
     session['first_name'] = request.form['first_name']
     session['last_name'] = request.form['last_name']
-    
     return redirect('/')
 
-# Log user in and take them to recipe dashboard
+# Log user in and redirect to recipe dashboard
 @app.route('/login', methods=['POST'])
 def login():
     print(request.form)
@@ -43,12 +41,10 @@ def login():
     session['user_id'] = user.id
     session['first_name'] = user.first_name
     session['last_name'] = user.last_name
-    print(session)
     return redirect('/recipes')
 
+# Logs user out and clears session data
 @app.route('/logout')
 def logout():
-    print(session)
     session.clear()
-    print(session)
     return redirect('/')
